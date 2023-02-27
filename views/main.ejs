@@ -10,9 +10,9 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #df5bd4;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">WEBC</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -30,15 +30,16 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="/user">User</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="#">Call</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled"
-                  >Disabled</a
-                >
+                <div class="badge bg-primary text-wrap" style="width: 4rem; height: 1cm; ">
+                  <a><%= name %></a>
+                </div>
+                
               </li>
             </ul>
           </div>
@@ -52,17 +53,21 @@
                     <a href="/logout" class="btn btn-danger">Logout</a>
             </div>
         </div>
+        
+
+        
     </div>
+
+    
+
 </body>
 </html>
 <style>
-    body {
-    background: #76b852;
-    /* fallback for old browsers */
-    background: rgb(141, 194, 111);
-    background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgba(118, 184, 82, 1) 50%);
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+     body {
+
+background: #30cc90;
+font-family: "Roboto", sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
 </style>
