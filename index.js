@@ -52,12 +52,12 @@ app.get("/user", ifNotLoggedin, (req, res, next) => {
             res.render('user', { data: rows });
         });
 });
-app.get("/user_edit", ifNotLoggedin, (req, res, next) => {
-    dbConnection.query("SELECT * FROM `user` ", [req.session.userID])
-        .then(([rows]) => {
-            res.render('user_edit', { data: rows });
-        });
-});
+// app.get("/user_edit", ifNotLoggedin, (req, res, next) => {
+//     dbConnection.query("SELECT * FROM `user` ", [req.session.userID])
+//         .then(([rows]) => {
+//             res.render('user_edit', { data: rows });
+//         });
+// });
 
 
 
@@ -238,6 +238,14 @@ app.get("/user_edit/(:id)",ifNotLoggedin, (req,res,next) => {
     }
 
 });
+
+app.get('/delete/(:id)', (req, res) => {
+    let id = req.params.id;
+        dbConnection.query('DELETE FROM user WHERE id = ?', [id], [res,req])
+        .then(([rows]) => {
+            res.redirect('/user');
+        }); 
+        });
 
 
 app.use('/', (req, res) => {

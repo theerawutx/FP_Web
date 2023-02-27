@@ -59,7 +59,7 @@
                             <td><%= data[i].name %></td>
                             <td><%= data[i].email %></td>
                             <td>
-                                <a href="user_edit/<%= data.id %>/<%= data[i].id %>" class="btn btn-success edit" style="color: blue;">Edit</a>
+                                <a href="user_edit/<%= data[i].id %>" class="btn btn-success edit" style="color: blue;">Edit</a>
                                 <a href="../delete/<%= data[i].id %>" onclick="return alert('Are you sure?')" class="btn btn-danger delete" style="color: blue;">Delete</a>
                             </td>
                         </tr>
