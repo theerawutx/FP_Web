@@ -7,6 +7,49 @@ const { body, validationResult } = require('express-validator');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
+const server = require("http").Server(app);
+const { v4: uuidv4 } = require("uuid");
+const { ExpressPeerServer } = require("peer");
+const opinions = {
+    debug: true,
+}
+
+
+app.set("view engine", "ejs");
+const io = require("socket.io")(server, { 
+    cors: {
+        origin: '*'
+    }
+});
+app.get("/room", (req,res,next) => {
+     let id = req.params.id;
+     dbConnection.query("SELECT * FROM `user` ",[id])
+     .then(([rows]) => {
+        res.render('room',{name:rows[0].name,roomId: req.params.room});
+     });
+  });
+
+io.on("connection", (socket) => {
+    socket.on("join-room", (roomId, userId, userName) => {
+        socket.join(roomId);
+        setTimeout(() => {
+            socket.to(roomId).broadcast.emit("user-connected", userId);
+        }, 1000)
+        socket.on("message", (message) => {
+            io.to(roomId).emit("createMessage", message, userName);
+        });
+    });
+});
+
+
+
+app.use("/peerjs", ExpressPeerServer(server, opinions));
+app.use(express.static("public"));
+
+
+app.use(express.urlencoded({extended:false}));
+
+
 
 // SET OUR VIEWS AND VIEW ENGINE
 app.set('views', path.join(__dirname, 'views'));
@@ -33,13 +76,17 @@ const ifLoggedin = (req, res, next) => {
     }
     next();
 }
-/////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 app.get("/register", (req, res, next) => {
     res.render('register');
 });
 app.get("/main", (req, res, next) => {
     res.render('main');
 });
+// app.get("/user_edit", (req, res, next) => {
+//     res.render('user_edit');
+// });
+
 app.get("/main", ifNotLoggedin, (req, res, next) => {
     dbConnection.query("SELECT * FROM `user` ", [req.session.userID])
         .then(([rows]) => {
@@ -52,6 +99,9 @@ app.get("/user", ifNotLoggedin, (req, res, next) => {
             res.render('user', { data: rows });
         });
 });
+
+
+
 // app.get("/user_edit", ifNotLoggedin, (req, res, next) => {
 //     dbConnection.query("SELECT * FROM `user` ", [req.session.userID])
 //         .then(([rows]) => {
@@ -187,6 +237,7 @@ app.get('/logout', (req, res) => {
 
 
 
+/////////////////////////////////////////////////////
 
 app.get("/user_edit/(:id)",ifNotLoggedin, (req,res,next) => {
     let id = req.params.id;
@@ -253,4 +304,4 @@ app.use('/', (req, res) => {
 });
 
 
-app.listen(3000, () => console.log("Server is Running..."));
+server.listen(3000, () => console.log("Server is Running..."));
