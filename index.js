@@ -83,8 +83,8 @@ app.get("/register", (req, res, next) => {
 app.get("/main", (req, res, next) => {
     res.render('main');
 });
-// app.get("/user_edit", (req, res, next) => {
-//     res.render('user_edit');
+// app.get("/login", (req, res, next) => {
+//     res.render('login');
 // });
 
 app.get("/main", ifNotLoggedin, (req, res, next) => {
@@ -109,6 +109,12 @@ app.get("/user", ifNotLoggedin, (req, res, next) => {
 //         });
 // });
 
+app.get("/login", ifNotLoggedin, (req, res, next) => {
+    dbConnection.query("SELECT * FROM `user` ", [req.session.userID])
+        .then(([rows]) => {
+            res.render('login', { data: rows });
+        });
+});
 
 
 // ROOT PAGE
@@ -149,8 +155,8 @@ app.post('/register', ifLoggedin,
                 // INSERTING USER INTO DATABASE
                 dbConnection.execute("INSERT INTO `user`(`name`,`email`,`password`) VALUES(?,?,?)", [user_name, user_email, hash_pass])
                     .then(result => {
-                        res.send(`your account has been created successfully, Now you can <a href="/">Login</a>`);
-                        href = "/login"
+                        res.send(`สมัครใช้งานเรียบร้อยแล้ว กด <a href="/">Login</a> เพื่อทำการเข้าสู่ระบบ`);
+                        // href = "/login"
                     }).catch(err => {
                         // THROW INSERTING USER ERROR'S
                         if (err) throw err;
@@ -276,7 +282,7 @@ app.get("/user_edit/(:id)",ifNotLoggedin, (req,res,next) => {
             .then(result => {
                 res.send(`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <center><br><br>EDIT SUCCESS <br><br>
-                <a href="/admin" class="btn btn-primary">ADMIN</a></center>`);
+                <a href="/user" class="btn btn-primary">User</a></center>`);
             }).catch(err => {
                 // THROW INSERTING USER ERROR'S
                 if (err) throw err;
@@ -299,9 +305,9 @@ app.get('/delete/(:id)', (req, res) => {
         });
 
 
-app.use('/', (req, res) => {
-    res.status(404).send('<h1>404 Page Not Found!</h1>');
-});
+// app.use('/', (req, res) => {
+//     res.status(404).send('<h1>404 Page Not Found! (/)</h1>');
+// });
 
 
 server.listen(3000, () => console.log("Server is Running..."));
