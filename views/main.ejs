@@ -1,66 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-    <!-- BOOTSTRAP CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
-<body>
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled"
-                  >Disabled</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
 
-    <div class="container p-5">
-        <div class="card">
-            <div class="card-body">
-                    <h1>Hellos, <%= name %></h1>
-                    <a href="/logout" class="btn btn-danger">Logout</a>
-            </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+  <!-- BOOTSTRAP CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #df5bd4;">
+    <div class="container-fluid">
+      <h1>WEBC</h1>
+      <!-- <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button> -->
+      <div class="collapse navbar-collapse ml-3" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active " href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/user">User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/room">Video Call&Chat</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-end flex-column">
+          <a href="/logout" class="btn btn-danger ml-3  ">Logout</a>
         </div>
+      </div>
     </div>
+  </nav>
+
+  <div class="container p-5">
+    <div class="card">
+      <div class="card-body">
+        <h1>Hi...</h1>
+        <h1>name : <%= name %>
+        </h1>
+
+        <!-- <a href="/logout" class="btn btn-danger">Logout</a> -->
+      </div>
+      <h1> </h1>
+      <h1> </h1>
+      <div class="" style="margin: auto;">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/MkEBfxtg4Xg" title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <h1> </h1>
+      <h1> </h1>
+    </div>
+
+
+
+  </div>
+
+
+
 </body>
+
 </html>
 <style>
-    body {
-    background: #76b852;
-    /* fallback for old browsers */
-    background: rgb(141, 194, 111);
-    background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgba(118, 184, 82, 1) 50%);
+  body {
+
+    background: #30cc90;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Login Or Register</title>
-  <link rel="stylesheet" href="CSS/login.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -28,9 +28,12 @@
           <div class="alert alert-danger" role="alert"><%= error_msg %></div>
         <% });
         } %>
-        <button type="submit" class="btn btn-success">Sign Up</button>
-    </form>
+        <button type="submit" class="btn btn-success ">Sign Up</button>
+
+        <a>Back To  </a><a href="/" >Login</a>
+        
     </div>
+    
   </div>
 </body>
 </html>
@@ -145,12 +148,10 @@
   }
 
   body {
-    background: #76b852;
-    /* fallback for old browsers */
-    background: rgb(141, 194, 111);
-    background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgba(118, 184, 82, 1) 50%);
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+
+background: #30cc90;
+font-family: "Roboto", sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
 </style>
